@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjen BDAY!</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 300px;
+        }
+
+        /* Centering the QR code and text */
+        .qr-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #qr-code {
+            margin-top: 10px;
+        }
+
+        /* By default, display the QR code */
+        #qr-code {
+            display: block;
+        }
+
+        /* On smaller screens, hide the QR code and text */
+        @media (max-width: 768px) {
+            .qr-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <model-viewer src="bok.glb" alt="Arjen Bday" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate>
+    </model-viewer>
+
+    <!-- QR Code and Text Wrapper -->
+    <div class="qr-container">
+        <p>Please open this page on a mobile device.</p>
+        <img id="qr-code" src="qr.png" alt="QR Code for URL">
+    </div>
+
+    <script>
+        // More accurate device detection using JavaScript
+        // You can further hide the QR code if it's detected to be a mobile device.
+        if (window.navigator.userAgent.match(/Mobile|iPhone|iPad|iPod|Android|BlackBerry|IEMobile/)) {
+            document.querySelector('.qr-container').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Recognition Example</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <script src="https://www.xrai.co.za/webar/artyom.js/build/artyom.window.js"></script>
+    <script src="/static/request.js"></script>
+
+    <style>
+        model-viewer {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <model-viewer id="modelViewer" src="/static/models/roboto_brand.glb" autoplay alt="Demo Test model"
+        ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate scale="0.2 0.2 0.2">
+    </model-viewer>
+
+    <button id="initializeSpeech">Initialize Speech</button>
+    <button id="startButton" hidden>Start</button>
+    <button id="readTextButton" disabled>Read Text</button>
+    <button id="enterAR" disabled>Enter AR Mode</button>
+    <button id="stopButton">Stop</button>
+
+    <div id="output">Welcome...</div>
+    <div id="response"></div>
+
+    <script>
+        const enterARButton = document.getElementById('enterAR');
+        const modelViewer = document.getElementById('modelViewer');
+        const startButton = document.getElementById('startButton');
+        const output = document.getElementById('output');
+        const response = document.getElementById('response');
+        const testSound = new Audio('https://www.xrai.co.za/webar/test-sound.mp3');
+        let artyomInstance;
+        let silenceTimer;
+
+        document.getElementById('initializeSpeech').addEventListener('click', function() {
+            const silentUtterance = new SpeechSynthesisUtterance('');
+            window.speechSynthesis.speak(silentUtterance);
+            // Optionally, enable the Read Text button here, if it's initially disabled
+            document.getElementById('readTextButton').disabled = false;
+            document.getElementById('enterAR').disabled = false;
+            startArtyom();
+
+            fetch('/button-pressed', {
+                method: 'POST'
+            }).then(response => response.json()).then(data => {
+                console.log(data.message);
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        const stopButton = document.getElementById('stopButton');
+        stopButton.addEventListener('click', function() {
+            stopArtyom();
+        });
+
+        // function stopArtyom() {
+        //     console.log("artyomInstance:", artyomInstance); // Debugging line
+        //     if (artyomInstance) {
+        //         console.log("STOOOOOP!");
+        //         artyomInstance.fatality().then(() => {
+        //             console.log("Artyom stopped");
+        //             artyomInstance.initialize({
+        //                lang: "en-US",
+        //                continuous: false,
+        //                debug: true,
+        //                listen: false
+        //             }).then(() => {
+        //                console.log("Artyom reinitialized");
+        //             }).catch((err) => {
+        //                console.error("Artyom couldn't be reinitialized: ", err);
+        //             });
+        //         });
+        //     }
+        //     //stopButton.disabled = true;
+        // }
+
+
+        function initializeArtyom() {
+            artyomInstance = new Artyom();
+            artyomInstance.initialize({
+                lang: "en-US",
+                continuous: true,
+                debug: true,
+                listen: true
+            }).then(() => {
+                console.log("Artyom has been correctly initialized");
+            }).catch((err) => {
+                console.error("Artyom couldn't be initialized: ", err);
+            });
+            return artyomInstance;
+        }
+
+        if (enterARButton && modelViewer) {
+            enterARButton.addEventListener('click', function() {
+                modelViewer.activateAR();
+                startArtyom();
+            });
+        }
+
+        function startArtyom() {
+            console.log("STARTING ARTYOM");
+            var artyom = initializeArtyom();
+            artyom.addCommands([
+                {
+                    indexes: ["*"],
+                    smart: true,
+                    action: function(i, transcript) {
+                        clearTimeout(silenceTimer);
+                        silenceTimer = setTimeout(function() {
+                            processTranscript(transcript);
+                        }, 2000);
+                    }
+                }
+            ]);
+                // Disable stop button initially
+            const stopButton = document.getElementById('stopButton');
+            //stopButton.disabled = true;
+
+            // Enable stop button after 2 seconds
+            setTimeout(() => {
+                stopButton.disabled = false;
+            }, 2000);
+        }
+
+        function stopArtyom() {
+            console.log("THIS ONE");
+            if (artyomInstance) {
+                artyomInstance.fatality();
+                setTimeout(() => {
+                    artyomInstance.initialize({
+                        lang: "en-US",
+                        continuous: false,
+                        debug: true,
+                        listen: false
+                    });
+                }, 250);
+                console.log("Artyom stopped");
+            }
+        }
+
+        function processTranscript(transcript) {
+            var promptWithAppend = transcript + " Keep your response short please";
+            console.log("This is the prompt:", promptWithAppend);
+            output.innerText = promptWithAppend;
+            //readBack(transcript);
+            stopArtyom();
+            //testSound.play();
+            //setTimeout(readStoredText, 1000);
+            askChatGPT(promptWithAppend);
+        }
+
+        function readStoredText() {
+            readBack(response.innerText);
+        }
+
+        function readBack(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.onend = function() {
+                //startArtyom(); // Start listening again once the speech has finished
+                console.log("IT SHOULD START HERE AGAIN");
+                setTimeout(startArtyom, 1000);
+            };
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Moved to the initialize button...
+        // startButton.addEventListener('click', function() {
+        //     startArtyom();
+        // });
+
+        readTextButton.addEventListener('click', function() {
+            readBack(output.innerText);
+        });
+
+    </script>
+</body>
+
+</html>

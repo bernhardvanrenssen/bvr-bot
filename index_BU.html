@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Viewer AR Example</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <script src="https://www.xrai.co.za/webar/artyom.js/build/artyom.window.js"></script>
+    <style>
+        model-viewer {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <model-viewer id="modelViewer" src="roboto_brand.glb" autoplay alt="Demo Test model"
+        ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate scale="0.2 0.2 0.2">
+    </model-viewer>
+
+    <button id="startSpeech">Start Speech Recognition</button>
+    <button id="testSound">Test Sound</button>
+    <button id="readLastDebugButton">Read Last Debug</button>
+    <button id="enterAR">Enter AR Mode</button>
+    <button onclick="stopArtyom()">Stop Listening</button>
+
+    <div id="speechOutput" hidden>Speech Output...</div>
+    <div id="debug" style="color:red;">Debug Information...</div>
+    <div id="lastDebug"></div>
+    <div id="statusBlock" style="width: 50px; height: 50px; background-color: red;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Function to determine if the platform is iOS
+        function isiOS() {
+            return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+        
+        // Create a script tag
+        var script = document.createElement('script');
+        
+        // Set the src attribute to the correct script based on the platform
+        if (isiOS()) {
+            script.src = 'ios-script.js'; // Path to the iOS-specific script
+        } else {
+            script.src = 'non-ios-script.js'; // Path to the non-iOS-specific script
+        }
+        
+        // Append the script tag to the body
+        document.body.appendChild(script);
+        });
+        
+    </script>
+
+    <script>
+        const testSound = new Audio('https://www.xrai.co.za/webar/test-sound.mp3');
+        // Function to change the color of the block
+        function updateBlockColor(color) {
+            const statusBlock = document.getElementById('statusBlock');
+            statusBlock.style.backgroundColor = color;
+        }
+
+        let eventFiredTimer;
+        let isGreen = false;
+
+        // Function to check the debug message every second
+        setInterval(function() {
+            const debugOutput = document.getElementById('debug');
+            if (debugOutput.innerText === 'Event fired') {
+                if (!eventFiredTimer) {
+                    eventFiredTimer = setTimeout(function() {
+                        // If the debug message has been "Event fired" for more than 2 seconds, turn the block green
+                        updateBlockColor('green');
+                        isGreen = true;
+                        greenFlag()
+                    }, 500);
+                }
+            } else {
+                clearTimeout(eventFiredTimer);
+                eventFiredTimer = null;
+                if (isGreen) {
+                    // If the debug message changes from "Event fired" and the block is green, turn it back to red
+                    updateBlockColor('red');
+                    isGreen = false;
+                }
+            }
+            //readLastDebug();
+        }, 500);
+
+        function greenFlag(){
+            console.log("entering green");
+            window.stopArtyom();
+            readLastDebug();
+            //testSound.play(); // Playing the test sound
+            
+        }
+
+        function readLastDebug() {
+            const lastDebugOutput = document.getElementById('lastDebug').innerText;
+            const utterance = new SpeechSynthesisUtterance(lastDebugOutput);
+
+            // Get the available voices
+            const voices = window.speechSynthesis.getVoices();
+
+            // Find the first English voice
+            const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
+
+            if (englishVoice) {
+                // Set the voice
+                utterance.voice = englishVoice;
+            } else {
+                console.warn('English voice not found; using default voice');
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+
+    <script>
+        document.getElementById('readLastDebugButton').addEventListener('click', readLastDebug);
+    </script>
+    <script src="ios-script.js"></script>
+    <script src="non-ios-script.js"></script>
+    
+    
+</body>
+
+</html>

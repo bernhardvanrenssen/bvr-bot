@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Viewer AR Example</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <style>
+        model-viewer {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <model-viewer src="roboto_brand.glb" alt="Demo Test model"
+        ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate>
+    </model-viewer>
+
+    <button id="startSpeech">Start Speech-to-Text</button>
+    <p id="speechOutput"></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startSpeechButton = document.getElementById('startSpeech');
+            const speechOutput = document.getElementById('speechOutput');
+            const modelViewer = document.querySelector('model-viewer');
+
+            modelViewer.addEventListener('ar-status', (event) => {
+                if (event.detail.status === 'session-started') {
+                    // AR mode is entered
+                    startSpeechButton.style.display = 'block';
+                } else if (event.detail.status === 'not-presenting') {
+                    // AR mode is exited
+                    startSpeechButton.style.display = 'none';
+                }
+            });
+            // Check if the browser supports the Web Speech API
+            if ('webkitSpeechRecognition' in window) {
+                const recognition = new webkitSpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+        
+                recognition.onstart = function() {
+                    speechOutput.innerText = 'Listening...';
+                };
+        
+                recognition.onerror = function(event) {
+                    speechOutput.innerText = 'Error occurred: ' + event.error;
+                };
+        
+                recognition.onend = function() {
+                    startSpeechButton.disabled = false;
+                };
+        
+                recognition.onresult = function(event) {
+                    let interimTranscript = '';
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        const transcript = event.results[i][0].transcript;
+                        if (event.results[i].isFinal) {
+                            speechOutput.innerText = transcript;
+                        } else {
+                            interimTranscript += transcript;
+                        }
+                    }
+                    speechOutput.innerText += interimTranscript;
+                };
+        
+                startSpeechButton.addEventListener('click', function() {
+                    recognition.start();
+                    startSpeechButton.disabled = true;
+                });
+            } else {
+                speechOutput.innerText = 'Your browser does not support the Web Speech API.';
+            }
+        });
+        </script>
+</body>
+
+</html>

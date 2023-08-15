@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Viewer AR Example</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <script src="https://www.xrai.co.za/webar/artyom.js/build/artyom.window.js"></script>
+
+    <style>
+        model-viewer {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <model-viewer id="modelViewer" src="roboto_brand.glb" autoplay alt="Demo Test model"
+        ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate scale="0.2 0.2 0.2">
+    </model-viewer>
+
+    <button onclick="startArtyom()">Start Listening</button>
+    <button onclick="stopArtyom()">Stop Listening</button>
+
+    <!-- <script>
+        var Jarvis = new Artyom();
+    
+        Jarvis.say("Hello World !");
+    </script> -->
+
+    <script>
+        
+        var artyom = new Artyom();
+
+        function startArtyom() {
+            artyom.addCommands([
+                {
+                    indexes: ["Hello"],
+                    action: function() {
+                        alert("Hello to you too!");
+                    }
+                }
+            ]);
+
+            artyom.initialize({
+                lang: "en-US",
+                continuous: true,
+                debug: true,
+                listen: true
+            }).then(() => {
+                console.log("Artyom has been correctly initialized");
+            }).catch((err) => {
+                console.error("Artyom couldn't be initialized: ", err);
+            });
+        }
+
+        function stopArtyom() {
+            artyom.fatality();
+            console.log("Artyom has stopped listening");
+        }
+    </script>
+
+
+</body>
