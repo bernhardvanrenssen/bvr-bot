@@ -1,4 +1,4 @@
 .env
-
+ngrok.exe
 node_modules/
-blender/.env
+blender/
