@@ -31,6 +31,15 @@
     <div id="output">Welcome...</div>
     <div id="response"></div>
 
+    <div style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;">
+        <h3>Test Keyword Extraction</h3>
+        <input type="text" id="keywordTestInput" placeholder="Type a query here..." style="width: 70%;">
+        <button id="testKeywordButton">Test Keyword Extraction</button>
+        <div id="keywordResult">Result will appear here...</div>
+        <div id="promptAnswer">Raw answer will appear here...</div>
+        <div id="gpt3Answer">Refined answer will appear here...</div>
+    </div>
+
     <script>
         const enterARButton = document.getElementById('enterAR');
         const modelViewer = document.getElementById('modelViewer');
@@ -38,6 +47,40 @@
         const output = document.getElementById('output');
         const response = document.getElementById('response');
         const testSound = new Audio('https://www.xrai.co.za/webar/test-sound.mp3');
+
+        // Testing the prompt stuff
+        const testKeywordButton = document.getElementById('testKeywordButton');
+        const keywordTestInput = document.getElementById('keywordTestInput');
+        const keywordResult = document.getElementById('keywordResult');
+        const promptAnswer = document.getElementById('promptAnswer');
+        const gpt3Answer = document.getElementById('gpt3Answer');
+
+        testKeywordButton.addEventListener('click', function() {
+            const prompt = keywordTestInput.value;
+
+            fetch('/test-extract-keyword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: prompt })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("AM I GETTING RESPONSE?", data)
+                keywordResult.innerText = "Extracted keyword: " + data.keyword;
+                promptAnswer.innerText = "Raw answer: " + data.raw_answer;
+
+                // Handle the GPT-3 answer here
+                gpt3Answer.innerText = "GPT-3's answer: " + data.gpt3_answer;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        // End of Test
+
         let artyomInstance;
         let silenceTimer;
 

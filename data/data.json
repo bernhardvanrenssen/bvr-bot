@@ -1,111 +1,35 @@
+
 {
-    "professional_summary": {
-        "title": "Professional Summary",
-        "description": "Software developer with 5+ years of experience working on a spectrum of projects including backend work for digital SaaS payment platforms to spatial-positioning systems for cross-platform, augmented reality applications. Started career as an Architect and co-founded XRai that delivers bespoke XR solutions. Current role as a mid-level full-stack software engineer managing a team of 5 and multiple projects.",
-        "keywords": ["software developer", "XRai", "architecture", "agile", "SDLC", "full stack", "SaaS"]
-    },
-    "education": {
-        "title": "Education",
-        "universities": [
-            {
-                "degree": "BSc Arch",
-                "university": "University of Pretoria",
-                "duration": "2012 - 2014",
-                "description": "Completed Bachelors of Science Architecture degree.",
-                "keywords": ["BSc", "architecture", "Pretoria"]
-            },
-            {
-                "degree": "BArch (Hons)",
-                "university": "University of Pretoria",
-                "duration": "2016",
-                "description": "Completed Honours degree with research in Human Settlements and Urbanism focusing on a spatial and social study.",
-                "keywords": ["BArch", "architecture", "Pretoria", "Human Settlements", "Urbanism"]
-            },
-            {
-                "degree": "MProf (Arch)",
-                "university": "University of Pretoria",
-                "duration": "2017",
-                "description": "Completed Master's degree focusing on educational resource infrastructure provision to marginalized communities.",
-                "keywords": ["MProf", "architecture", "Pretoria", "educational resource"]
-            },
-            {
-                "degree": "Postgraduate Certificate in Computer Science",
-                "university": "University of Essex",
-                "duration": "2021 - 2022",
-                "description": "Completed a Postgraduate Certificate gaining a broader technical understanding of software development. Plan to pursue a Master’s degree through the University of Essex’s online program.",
-                "keywords": ["postgraduate", "computer science", "Essex", "software development"]
-            }
-        ]
-    },
-    "career": {
-        "title": "Career",
-        "jobs": [
-            {
-                "role": "Design Architect",
-                "company": "Various Firms",
-                "duration": "2016 - 2020",
-                "description": "Worked as a Design Architect at various firms including Paragon Architects and Kanda Architects.",
-                "keywords": ["design", "architect", "Paragon", "Kanda"]
-            },
-            {
-                "role": "Professional Architect",
-                "company": "BVR Architects",
-                "duration": "2020-2022",
-                "description": "Founded and operate BVR Architects specializing in technological advancements in architecture. Oversee project life cycle and manage contract-based employees.",
-                "keywords": ["BVR", "architect", "point cloud", "VR", "software plugin"]
-            },
-            {
-                "role": "CTO",
-                "company": "XRai",
-                "duration": "2018 - Current",
-                "description": "Established and led an AR/VR startup. Leading technology and R&D team. Expertise in 3D modeling and optimizing project assets.",
-                "keywords": ["XRai", "CTO", "AR/VR", "3D modeling", "technology", "R&D"]
-            },
-            {
-                "role": "Software Developer",
-                "company": "DotXML",
-                "duration": "2021 - Current",
-                "description": "Full-stack software developer with experience in web SaaS platforms within fintech and insurance. AWS registered cloud practitioner.",
-                "keywords": ["DotXML", "full stack", "AWS", "fintech", "insurance", "software developer"]
-            }
-        ]
-    },
-    "software_skills": {
-        "title": "Software Skills",
-        "skills": [
-            {"software": "Arch Linux OS", "proficiency": "4/5"},
-            {"software": "Windows OS", "proficiency": "4/5"},
-            {"software": "VS Code", "proficiency": "5/5"},
-            {"software": "Bash Scripting", "proficiency": "3/5"},
-            {"software": "Git and Mercurial", "proficiency": "4/5"},
-            {"software": "Android Studio", "proficiency": "2/5"},
-            {"software": "Unity 3D", "proficiency": "5/5"},
-            {"software": "PlayCanvas", "proficiency": "5/5"},
-            {"software": "Unreal Engine", "proficiency": "4/5"},
-            {"software": "Blender", "proficiency": "4/5"},
-            {"software": "Autodesk Revit", "proficiency": "5/5"},
-            {"software": "Autodesk 3DS MAX", "proficiency": "4/5"},
-            {"software": "Rhino (with Grasshopper)", "proficiency": "4/5"}
-        ]
-    },
-    "technical_skills": {
-        "title": "Technical Skills",
-        "skills": [
-            {"technology": "Python", "experience": "3 years"},
-            {"technology": "Turbogears framework", "experience": "3 years"},
-            {"technology": "FastAPI", "experience": "3 years"},
-            {"technology": "C#", "experience": "3 years"},
-            {"technology": "Data (SQL and related)", "experience": "3 years"},
-            {"technology": "HTML/CSS", "experience": "3 years"},
-            {"technology": "Javascript", "experience": "3 years"},
-            {"technology": "NodeJS (with ExpressJS)", "experience": "1 years"},
-            {"technology": "ARKit", "experience": "2 year"},
-            {"technology": "ARCore", "experience": "2 year"},
-            {"technology": "WebXR", "experience": "2 years"},
-            {"technology": "Amazon Web Services (AWS)", "experience": "2 years"},
-            {"technology": "Microsoft Azure", "experience": "1 year"},
-            {"technology": "Fusion 360", "experience": "2 years"}
-            {"technology": "AWS web services", "experience": "2 years"}
-        ]
+    "personal_profile": {
+        "core_values": {
+            "answer": "Values: honesty, hard work, lifelong learning. Trust easily, help others, share technical knowledge.",
+            "keywords": ["values", "beliefs", "philosophy", "honesty", "hard work", "lifelong learning", "trust", "helping", "technical", "knowledge"],
+            "questions": ["What are your core values?", "What do you believe in?", "What principles guide your life?"]
+        },
+        "personality_description": {
+            "answer": "Traits: energetic, friendly, optimistic, competitive. Can seem unapproachable. Not great at public speaking. Calm, patient, dedicated.",
+            "keywords": ["personality", "character traits", "attitude", "outlook", "optimist", "competitive", "calm", "patient", "dedicated", "persistent", "public speaker"],
+            "questions": ["How would you describe yourself?", "Tell me about your personality.", "How do people generally perceive you?", "How do you approach challenges?"]
+        },
+        "hobbies_interests": {
+            "answer": "Activities: CrossFit, running marathons, played classical piano. Interests: board games, chess, designing (ex-architect), timber interior projects. Time with wife Sanri & golden retriever Travis.",
+            "keywords": ["hobbies", "interests", "passions", "sports", "music", "instruments", "games", "chess", "design", "architecture", "family", "pets"],
+            "questions": ["What are your hobbies?", "How do you spend your free time?", "What sports do you play?", "Do you play any musical instruments?", "Tell me about your family and pets."]
+        },
+        "handling_stress": {
+            "answer": "Copes with stress through training. Physical exercise for clarity and helps to reduce stress. Keeps cool under pressure.",
+            "keywords": ["stress", "pressure", "challenges", "coping mechanisms", "relaxation", "strategy", "physical exercise"],
+            "questions": ["How do you handle stress?", "What do you do when faced with challenges?", "How do you relax or unwind?", "Tell me about a time you faced a significant challenge."]
+        },
+        "memorable_experiences": {
+            "answer": "Learnings: persistence from piano, masters in architecture, passion for design. Shifted to Computer Science. Married Sanri van Renssen, 19 March 2022.",
+            "keywords": ["memories", "pivotal moments", "education", "music", "piano", "architecture", "design", "Computer Science", "marriage", "support"],
+            "questions": ["Tell me about a memory that shaped you.", "How did your education influence your career?", "How has playing the piano influenced you?", "Tell me about your wedding."]
+        },
+        "strengths_weaknesses": {
+            "answer": "Strengths: logical thinking, out-of-box solutions, performs under pressure, fast learning, multitasking. Improvement areas: public speaking, admin, cleaning.",
+            "keywords": ["strengths", "weaknesses", "skills", "areas of improvement", "challenges", "abilities", "public speaking", "admin", "cleaning"],
+            "questions": ["What are your strengths?", "Where do you need improvement?", "What is a skill you're proud of?", "Is there anything you struggle with?"]
+        }
     }
 }
