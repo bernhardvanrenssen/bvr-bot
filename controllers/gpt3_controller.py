@@ -2,7 +2,7 @@ import openai
 import json
 from dotenv import load_dotenv
 import os
-from token_counter import TokenCounter
+from token_count import TokenCounter
 
 # Load environment variables from .env file
 load_dotenv()
@@ -12,8 +12,6 @@ openai.api_key = os.environ['OPENAI_API_KEY']
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(CURRENT_DIR)
-
-token_counter = TokenCounter()
 
 def load_keywords_from_json(filename):
     """
@@ -33,7 +31,7 @@ def load_keywords_from_json(filename):
         print("RETURNING KEYWORDS:", keywords)
         return keywords
 
-def gpt3_match_keywords(prompt):
+def gpt3_match_keywords(prompt, token_counter):
     """
     Uses OpenAI's Davinci model to match the user's prompt against the extracted list of keywords.
     """
@@ -50,7 +48,7 @@ def gpt3_match_keywords(prompt):
         )
         token_counter.add_received(response['usage']['total_tokens'])
         matched_keywords = response.choices[0].text.strip()
-        return matched_keywords
+        return matched_keywords, token_counter
     except Exception as e:
         print(f"Error while matching keywords: {e}")
         return None
@@ -87,7 +85,7 @@ def get_answer_by_keyword(keyword_string):
 
     return "Im not sure I understand correctly, can you please rephrase the question"
 
-def get_gpt3_response(prompt):
+def get_gpt3_response(prompt, token_counter):
     '''This function calls the GPT-3 API and fetches a response for the given prompt'''
     token_counter.add_sent(len(prompt.split()))
     response = openai.Completion.create(
@@ -96,9 +94,9 @@ def get_gpt3_response(prompt):
       max_tokens=150
     )
     token_counter.add_received(response['usage']['total_tokens'])
-    return response.choices[0].text.strip()
+    return response.choices[0].text.strip(), token_counter
 
-def get_extended_answer_for_prompt(user_prompt):
+def get_extended_answer_for_prompt(user_prompt, token_counter):
     keyword_match = gpt3_match_keywords(user_prompt)
     raw_answer = get_answer_by_keyword(keyword_match)
     
@@ -109,6 +107,7 @@ def get_extended_answer_for_prompt(user_prompt):
     gpt3_response = get_gpt3_response(gpt3_prompt)
 
     total_tokens = token_counter.display()
+    print("TOTAL TOKENS:", total_tokens)
 
     print(f"Extracted Keyword: {answers['keyword']}")
     print(f"Raw Answer: {answers['raw_answer']}")
@@ -123,8 +122,9 @@ def get_extended_answer_for_prompt(user_prompt):
 
 # TEST ONLY THIS...
 if __name__ == '__main__':
+    token_counter = TokenCounter()
     user_prompt = input("Ask me a question: ")
-    answers = get_extended_answer_for_prompt(user_prompt)
+    answers = get_extended_answer_for_prompt(user_prompt, token_counter)
     print(f"Extracted Keyword: {answers['keyword']}")
     print(f"Raw Answer: {answers['raw_answer']}")
     print(f"GPT-3's Answer: {answers['gpt3_answer']}")

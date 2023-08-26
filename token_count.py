@@ -13,7 +13,8 @@ class TokenCounter:
         return self.sent_tokens + self.received_tokens
 
     def display(self):
-        return_string = "Sent: " + self.sent_tokens + " Received: " + self.received_tokens
+        return_string = "Sent: " + str(self.sent_tokens) + " Received: " + str(self.received_tokens)
+        #return return_string
         print(f"Tokens sent to OpenAI: {self.sent_tokens}")
         print(f"Tokens received from OpenAI: {self.received_tokens}")
         print(f"Total tokens used: {self.total_tokens()}")

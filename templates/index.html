@@ -75,7 +75,7 @@
 
                 // Handle the GPT-3 answer here
                 gpt3Answer.innerText = "GPT-3's answer: " + data.gpt3_answer;
-                totalTokens.innerText  = data.tokens;
+                totalTokens.innerText  = 'Sent: ' + data.tokens_sent + ' Received: ' + data.tokens_received;
             })
             .catch(error => {
                 console.error('Error:', error);

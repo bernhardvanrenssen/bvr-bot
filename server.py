@@ -4,6 +4,7 @@ import openai
 from flask import Flask, request, jsonify, render_template
 from controllers.gpt3_controller import gpt3_match_keywords, get_answer_by_keyword, get_gpt3_response
 from keyword_extractor_spacy import extract_keywords
+from token_count import TokenCounter
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
@@ -12,6 +13,8 @@ load_dotenv()  # This will load the .env file that's in the same directory as th
 api_key = os.environ['OPENAI_API_KEY']
 openai_api_key = api_key = os.environ['OPENAI_API_KEY']
 openai.api_key = openai_api_key
+
+token_counter = TokenCounter()
 
 @app.route('/')
 def index():
@@ -40,8 +43,10 @@ def get_answer_for_prompt():
     '''This is for GPT-3 extraction'''
     prompt = request.json['prompt']
 
+    global token_counter
+
     # Find the best matching keyword for the user's prompt - using GPT 3 for keyword matching
-    keyword_match = gpt3_match_keywords(prompt)
+    keyword_match, token_counter = gpt3_match_keywords(prompt, token_counter)
 
     # This is for using SpaCy library
     # try:
@@ -63,13 +68,20 @@ def get_answer_for_prompt():
     print("FINAL GPT PROMPT:", gpt3_prompt)
 
     # Now, send this combined prompt to GPT-3 for a response
-    gpt3_response = get_gpt3_response(gpt3_prompt)
+    gpt3_response, token_counter = get_gpt3_response(gpt3_prompt, token_counter)
+    print("GPT3 RESPONSE:", gpt3_response)
+
+    sent = token_counter.sent_tokens
+    received = token_counter.received_tokens
+    print("TOKEN COUNT:", sent, received)
 
     # Return the data
     return jsonify({
         'keyword': keyword_match,
         'raw_answer': raw_answer,
-        'gpt3_answer': gpt3_response
+        'gpt3_answer': gpt3_response,
+        'tokens_sent': sent,
+        'tokens_received': received
     })
     
 
