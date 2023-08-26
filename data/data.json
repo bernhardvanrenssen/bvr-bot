@@ -1,4 +1,3 @@
-
 {
     "personal_profile": {
         "core_values": {
@@ -30,6 +29,44 @@
             "answer": "Strengths: logical thinking, out-of-box solutions, performs under pressure, fast learning, multitasking. Improvement areas: public speaking, admin, cleaning.",
             "keywords": ["strengths", "weaknesses", "skills", "areas of improvement", "challenges", "abilities", "public speaking", "admin", "cleaning"],
             "questions": ["What are your strengths?", "Where do you need improvement?", "What is a skill you're proud of?", "Is there anything you struggle with?"]
+        }
+    },
+
+    "professional_aspirations_experience": {
+        "transition_reason": {
+            "answer": "Starting with a boredom in pure architecture design, I self-taught coding, converting architectural designs into VR experiences. This led to co-founding XRai, an AR/VR startup. Post my formal computer science education from the University of Essex Online, I progressed to a lead developer role at dotxml.",
+            "keywords": ["architecture", "coding", "VR", "XRai", "startup", "University of Essex Online", "dotxml"],
+            "questions": ["What inspired you to transition from architecture to software development and XR?"]
+        },
+        "skills_intersection": {
+            "answer": "There's potential in AR/VR for architecture, especially with 3D modeling, but the adoption in South Africa was low. Beyond AR/VR, I developed plugins and tools for architectural software, embracing broader programming applications.",
+            "keywords": ["AR", "VR", "3D modelling", "South Africa", "plugins", "architectural software", "tools"],
+            "questions": ["How do you see the intersection of your architectural and software development skills?"]
+        },
+        "proud_project": {
+            "answer": "A notable project was for Laing O’Rourke in the UK. Using Microsoft Hololens 2, I developed an AR application guiding assembly of prefabricated panels for modular homes. It integrated real-time data, gesture, and voice commands.",
+            "keywords": ["Laing O’Rourke", "AR", "Microsoft Hololens 2", "prefabricated panels", "real-time data", "gesture", "voice commands"],
+            "questions": ["Describe a project you’re most proud of and why?"]
+        },
+        "career_challenge": {
+            "answer": "In South Africa's challenging economy, I faced months without salary due to clients not paying. Diversifying into AR/VR with my firm helped me stay financially stable during such times.",
+            "keywords": ["South Africa", "economy", "salary", "AR", "VR", "diversify"],
+            "questions": ["What’s a challenge you’ve faced in your career and how did you overcome it?"]
+        },
+        "future_vision": {
+            "answer": "Over the next 5 years, I aspire for a higher managerial role in a Netherlands software firm, focusing on continuous growth and expanding my software capabilities.",
+            "keywords": ["5 years", "managerial role", "Netherlands", "software firm", "growth"],
+            "questions": ["Where do you see yourself in the next 5 years professionally?"]
+        },
+        "leadership_style": {
+            "answer": "I view myself as a visionary leader, adept at understanding the broader picture while sometimes missing minute details.",
+            "keywords": ["visionary", "leader", "broader picture"],
+            "questions": ["What is your leadership style?"]
+        },
+        "tech_advancement": {
+            "answer": "AI's current growth, especially GPT models, stands out in my field. The public adoption surge offers numerous applications, and its combination with digital twins or IoT could be disruptive.",
+            "keywords": ["AI", "GPT models", "public adoption", "digital twins", "IoT", "disruptive"],
+            "questions": ["What do you consider to be the most significant technological advancement in your field?"]
         }
     }
 }

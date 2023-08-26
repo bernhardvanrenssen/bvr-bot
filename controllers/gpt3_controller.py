@@ -55,35 +55,37 @@ def gpt3_match_keywords(prompt, token_counter):
 
 def get_answer_by_keyword(keyword_string):
     print("INPUT KEYWORDS:", keyword_string)
-    """
-    Given a keyword string, the function will split it into individual keywords 
-    and fetch the relevant answer from the data.json file.
-    """
-
+    
     filename = os.path.join(ROOT_DIR, 'data', 'data.json')
 
     # Load the data
     with open(filename, 'r') as file:
         data = json.load(file)
 
-    # Ensure data is a dictionary
     if not isinstance(data, dict):
         raise ValueError("Expected a dictionary in data.json")
-
-    # Extract the personal_profile dictionary
-    personal_profile = data.get('personal_profile', {})
-    #print("PERSONAL PROFILE:", personal_profile)
 
     # Split the input keyword string into individual keywords
     input_keywords = [k.strip() for k in keyword_string.split(",")]
 
-    # Loop through sections in the personal profile
-    for section, content in personal_profile.items():
-        # Check if any of the input keywords exist in the keywords list
-        if any(k in content['keywords'] for k in input_keywords):
-            return content['answer']
+    matched_answers = []
 
-    return "Im not sure I understand correctly, can you please rephrase the question"
+    # Loop through main sections
+    for main_section_key, main_section_data in data.items():
+        # Loop through subsections
+        for section_key, section_data in main_section_data.items():
+            # Check if any of the input keywords exist in the keywords list
+            if any(k in section_data['keywords'] for k in input_keywords):
+                matched_answers.append(section_data['answer'])
+
+    # If we have matches, concatenate them into a single string
+    if matched_answers:
+        return '. '.join(matched_answers)
+
+    return "I'm not sure I understand correctly, can you please rephrase the question?"
+
+
+
 
 def get_gpt3_response(prompt, token_counter):
     '''This function calls the GPT-3 API and fetches a response for the given prompt'''
@@ -97,7 +99,8 @@ def get_gpt3_response(prompt, token_counter):
     return response.choices[0].text.strip(), token_counter
 
 def get_extended_answer_for_prompt(user_prompt, token_counter):
-    keyword_match = gpt3_match_keywords(user_prompt)
+    keyword_match, token_counter = gpt3_match_keywords(user_prompt, token_counter)
+
     raw_answer = get_answer_by_keyword(keyword_match)
     
     # Combine the raw_answer with the user's prompt to form a new prompt for GPT-3
@@ -108,10 +111,6 @@ def get_extended_answer_for_prompt(user_prompt, token_counter):
 
     total_tokens = token_counter.display()
     print("TOTAL TOKENS:", total_tokens)
-
-    print(f"Extracted Keyword: {answers['keyword']}")
-    print(f"Raw Answer: {answers['raw_answer']}")
-    print(f"GPT-3's Answer: {answers['gpt3_answer']}")
 
     return {
         'keyword': keyword_match,
