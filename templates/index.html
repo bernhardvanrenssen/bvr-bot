@@ -38,6 +38,7 @@
         <div id="keywordResult">Result will appear here...</div>
         <div id="promptAnswer">Raw answer will appear here...</div>
         <div id="gpt3Answer">Refined answer will appear here...</div>
+        <div id="totalTokens">token usage:</div>
     </div>
 
     <script>
@@ -54,6 +55,7 @@
         const keywordResult = document.getElementById('keywordResult');
         const promptAnswer = document.getElementById('promptAnswer');
         const gpt3Answer = document.getElementById('gpt3Answer');
+        const totalTokens = document.getElementById('totalTokens');
 
         testKeywordButton.addEventListener('click', function() {
             const prompt = keywordTestInput.value;
@@ -73,6 +75,7 @@
 
                 // Handle the GPT-3 answer here
                 gpt3Answer.innerText = "GPT-3's answer: " + data.gpt3_answer;
+                totalTokens.innerText  = data.tokens;
             })
             .catch(error => {
                 console.error('Error:', error);

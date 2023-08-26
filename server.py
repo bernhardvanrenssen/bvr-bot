@@ -52,7 +52,7 @@ def get_answer_for_prompt():
     #     print("ERROR", e)
     #     #return jsonify({'error': str(e)})
 
-    print("THIS IS THE KEYWORD MATCH:", keyword_match, type(keyword_match))
+    print("THIS IS THE KEYWORD MATCH:", keyword_match)
 
     # Find the corresponding answer for the matched keyword
     raw_answer = get_answer_by_keyword(keyword_match)
