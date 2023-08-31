@@ -28,7 +28,6 @@ def load_keywords_from_json(filename):
                 except KeyError:
                     print(f"Error in data entry for {section_key} - {item_key}: {item_data}")
                 
-        print("RETURNING KEYWORDS:", keywords)
         return keywords
 
 def gpt3_match_keywords(prompt, token_counter):
@@ -83,8 +82,6 @@ def get_answer_by_keyword(keyword_string):
         return '. '.join(matched_answers)
 
     return "I'm not sure I understand correctly, can you please rephrase the question?"
-
-
 
 
 def get_gpt3_response(prompt, token_counter):

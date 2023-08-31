@@ -2,60 +2,60 @@
     "personal_profile": {
         "core_values": {
             "answer": "Values: honesty, hard work, lifelong learning. Trust easily, help others, share technical knowledge.",
-            "keywords": ["values", "beliefs", "philosophy", "honesty", "hard work", "lifelong learning", "trust", "helping", "technical", "knowledge"],
+            "keywords": ["values", "beliefs", "philosophy", "honesty", "hard work", "trust", "helping"],
             "questions": ["What are your core values?", "What do you believe in?", "What principles guide your life?"]
         },
         "personality_description": {
             "answer": "Traits: energetic, friendly, optimistic, competitive. Can seem shy if you dont know me. Not great at public speaking. Calm, patient, dedicated, very hard working, always seem to find a solution for any problem I encounter",
-            "keywords": ["personality", "character traits", "attitude", "outlook", "optimist", "competitive", "calm", "patient", "dedicated", "persistent", "public speaker"],
+            "keywords": ["personality", "character traits", "attitude", "outlook", "personality", "self", "me"],
             "questions": ["How would you describe yourself?", "Tell me about your personality.", "How do people generally perceive you?", "How do you approach challenges?"]
         },
         "hobbies_interests": {
             "answer": "Activities: CrossFit, running marathons, played classical piano. Interests: board games, chess, designing (ex-architect), timber interior projects. Time with wife Sanri & golden retriever Travis.",
-            "keywords": ["hobbies", "interests", "passions", "sports", "music", "instruments", "games", "chess", "design", "architecture", "family", "pets"],
+            "keywords": ["hobbies", "interests", "passions", "sports", "music", "family", "pets"],
             "questions": ["What are your hobbies?", "How do you spend your free time?", "What sports do you play?", "Do you play any musical instruments?", "Tell me about your family and pets."]
         },
         "handling_stress": {
             "answer": "Copes with stress through training. Physical exercise for clarity and helps to reduce stress. Keeps cool under pressure.",
-            "keywords": ["stress", "pressure", "challenges", "coping mechanisms", "relaxation", "strategy", "physical exercise"],
+            "keywords": ["stress", "pressure", "challenges", "coping mechanisms"],
             "questions": ["How do you handle stress?", "What do you do when faced with challenges?", "How do you relax or unwind?", "Tell me about a time you faced a significant challenge."]
         },
         "memorable_experiences": {
-            "answer": "Learnings: persistence from piano, masters in architecture, passion for design. Shifted to Computer Science. Married Sanri van Renssen, 19 March 2022.",
-            "keywords": ["memories", "pivotal moments", "education", "music", "piano", "architecture", "design", "Computer Science", "marriage", "support"],
+            "answer": "Learnings: persistence from piano, masters degree in architecture, passion for design. Shifted to Computer Science. Married Sanri van Renssen, 19 March 2022.",
+            "keywords": ["memories", "pivotal moments", "education", "music", "marriage", "support", "family"],
             "questions": ["Tell me about a memory that shaped you.", "How did your education influence your career?", "How has playing the piano influenced you?", "Tell me about your wedding."]
         },
         "strengths_weaknesses": {
             "answer": "Strengths: logical thinking, out-of-box solutions, performs under pressure, fast learning, multitasking. Improvement areas: public speaking, admin, cleaning.",
-            "keywords": ["strengths", "weaknesses", "skills", "areas of improvement", "challenges", "abilities", "public speaking", "admin", "cleaning"],
+            "keywords": ["strengths", "weaknesses", "skills", "areas of improvement", "challenges", "abilities"],
             "questions": ["What are your strengths?", "Where do you need improvement?", "What is a skill you're proud of?", "Is there anything you struggle with?"]
         }
     },
 
     "professional_aspirations_experience": {
         "transition_reason": {
-            "answer": "Starting with a boredom in pure architecture design, I self-taught coding, converting architectural designs into VR experiences. This led to co-founding XRai, an AR/VR startup. Post my formal computer science education from the University of Essex Online, I progressed to a lead developer role at dotxml.",
-            "keywords": ["architecture", "coding", "VR", "XRai", "startup", "University of Essex Online", "dotxml"],
+            "answer": "Started in architecture, Missed technical and problem-solving in architecture, I self-taught coding, converting architectural designs into VR experiences. This led to co-founding XRai, an AR/VR startup. Post my formal computer science education from the University of Essex Online, I progressed to a lead developer role at dotxml.",
+            "keywords": ["architecture", "coding", "startup", "study", "current job"],
             "questions": ["What inspired you to transition from architecture to software development and XR?"]
         },
         "skills_intersection": {
             "answer": "There's potential in AR/VR for architecture, especially with 3D modeling, but the adoption in South Africa was low. Beyond AR/VR, I developed plugins and tools for architectural software, embracing broader programming applications.",
-            "keywords": ["AR", "VR", "3D modelling", "South Africa", "plugins", "architectural software", "tools"],
+            "keywords": ["AR", "VR", "plugins", "tools", "architecture", "coding start"],
             "questions": ["How do you see the intersection of your architectural and software development skills?"]
         },
         "proud_project": {
             "answer": "A notable project was for Laing O’Rourke in the UK. Using Microsoft Hololens 2, I developed an AR application guiding assembly of prefabricated panels for modular homes. It integrated real-time data, gesture, and voice commands.",
-            "keywords": ["Laing O’Rourke", "AR", "Microsoft Hololens 2", "prefabricated panels", "real-time data", "gesture", "voice commands"],
+            "keywords": ["AR", "api", "real-time data", "key project", "best project", "memorable"],
             "questions": ["Describe a project you’re most proud of and why?"]
         },
         "career_challenge": {
             "answer": "In South Africa's challenging economy, I faced months without salary due to clients not paying. Diversifying into AR/VR with my firm helped me stay financially stable during such times.",
-            "keywords": ["South Africa", "economy", "salary", "AR", "VR", "diversify"],
+            "keywords": ["challenge", "life challenge", "economy", "diversify"],
             "questions": ["What’s a challenge you’ve faced in your career and how did you overcome it?"]
         },
         "future_vision": {
             "answer": "Over the next 5 years, I aspire for a higher managerial role in a Netherlands software firm, focusing on continuous growth and expanding my software capabilities.",
-            "keywords": ["5 years", "managerial role", "Netherlands", "software firm", "growth"],
+            "keywords": ["5 years", "professionally", "future", "career", "aspirations", "goals", "long-term", "vision", "managerial role", "growth"],
             "questions": ["Where do you see yourself in the next 5 years professionally?"]
         },
         "leadership_style": {
@@ -65,8 +65,55 @@
         },
         "tech_advancement": {
             "answer": "AI's current growth, especially GPT models, stands out in my field. The public adoption surge offers numerous applications, and its combination with digital twins or IoT could be disruptive.",
-            "keywords": ["AI", "GPT models", "public adoption", "digital twins", "IoT", "disruptive"],
+            "keywords": ["technical advancement", "future of software", "significant software", "technical advancement"],
             "questions": ["What do you consider to be the most significant technological advancement in your field?"]
         }
+    },
+
+    "skills_and_achievements": {
+        "favorite_tool_language": {
+            "answer": "Enjoys Python for its logic, readability, and vast library support. Finds it efficient for quick iterations and idea testing. Also have some experience with .Net, javascript and relevant frameworks, but not as much as python",
+            "keywords": ["favorite", "software", "tools", "Python", "programming language", "enjoy"],
+            "questions": ["Which programming language do you prefer and why?", "What's your go-to programming language?", "What do you like about Python?"]
+        },
+        "future_certifications": {
+            "answer": "Plans to extend Post Graduate Certificate to a Masters in Computer Science via University of Essex online. Interested in up-to-date tracks and modules.",
+            "keywords": ["future", "certifications", "courses", "Computer Science", "University"],
+            "questions": ["Do you have any educational goals in the near future?", "Are you planning on taking any courses?", "What's next for you in terms of education?"]
+        },
+        "awards_recognitions": {
+            "answer": "No software career awards or recognitions yet.",
+            "keywords": ["awards", "recognitions", "career"],
+            "questions": ["Have you received any professional accolades?", "Any awards or recognitions in your career?", "What accomplishments are you most proud of?"]
+        },
+        "industry_trends": {
+            "answer": "Stays updated through extensive reading, peer conversations, newsletters, and following software pages on social media like Reddit and particular youtube channels",
+            "keywords": ["industry", "trends", "up-to-date", "reading", "newsletters", "social media", "Reddit"],
+            "questions": ["How do you keep yourself updated on industry trends?", "What's your strategy for staying current in your field?", "How do you keep up with the latest industry news?"]
+        }
+    },
+    
+    "work_culture_environment": {
+        "preferred_environment": {
+            "answer": "I thrive in busy and remote settings, but also used to work from home a lot, staying connected via online platforms.",
+            "keywords": ["work environment", "remote", "office"],
+            "questions": ["What type of work environment do you thrive in?", "How do you manage remote work?", "Do you prefer working alone or in a team?"]
+        },
+        "conflict_resolution": {
+            "answer": "I'm patient but assertive in conflicts, valuing honesty and open dialogue. I dont get worked up easily and try to stay away from conflict where possible myself",
+            "keywords": ["conflict", "disagreement", "team", "resolution", "team issue"],
+            "questions": ["How do you handle disagreements or conflicts in a team setting?", "Tell me about a time you resolved a conflict in your team.", "How do you react when your opinions clash with team members?"]
+        },
+        "qualities_in_colleagues": {
+            "answer": "I value punctuality and open communication in my team, to have knowledge of issues early helps to think of solutions timeously.",
+            "keywords": ["qualities", "colleagues", "team members", "deadlines", "communication", "advance notice", "resources"],
+            "questions": ["What are the qualities you value most in colleagues and team members?", "How important is communication in a team?", "What makes a good colleague in your opinion?"]
+        },
+        "leadership_experience": {
+            "answer": "I was promoted to team lead quickly at dotXML and was project lead for a major insurance project, successfully delivered",
+            "keywords": ["leadership", "team lead", "promotion","insurance project", "technical lead"],
+            "questions": ["Describe an instance where you took on a leadership role. What was the outcome?", "How did you handle your promotion to team lead?", "Tell me about your leadership experience in your current project."]
+        }
     }
+    
 }
