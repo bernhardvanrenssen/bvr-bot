@@ -55,7 +55,7 @@ def gpt3_match_keywords(prompt, token_counter):
 def get_answer_by_keyword(keyword_string):
     print("INPUT KEYWORDS:", keyword_string)
     
-    filename = os.path.join(ROOT_DIR, 'data', 'data.json')
+    filename = os.path.join('data', 'data.json')
 
     # Load the data
     with open(filename, 'r') as file:
@@ -64,24 +64,22 @@ def get_answer_by_keyword(keyword_string):
     if not isinstance(data, dict):
         raise ValueError("Expected a dictionary in data.json")
 
-    # Split the input keyword string into individual keywords
-    input_keywords = [k.strip() for k in keyword_string.split(",")]
+    # Convert the input keyword string to lowercase and then split into individual keywords
+    input_keywords = [k.strip().lower() for k in keyword_string.split(",")]
 
     matched_answers = []
 
-    # Loop through main sections
     for main_section_key, main_section_data in data.items():
-        # Loop through subsections
         for section_key, section_data in main_section_data.items():
-            # Check if any of the input keywords exist in the keywords list
-            if any(k in section_data['keywords'] for k in input_keywords):
+            stored_keywords = [k.lower() for k in section_data['keywords']]
+            if any(k in stored_keywords for k in input_keywords):
                 matched_answers.append(section_data['answer'])
 
-    # If we have matches, concatenate them into a single string
     if matched_answers:
         return '. '.join(matched_answers)
 
-    return "I'm not sure I understand correctly, can you please rephrase the question?"
+    print("RETURNING FALSE")
+    return False
 
 
 def get_gpt3_response(prompt, token_counter):

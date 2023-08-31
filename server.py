@@ -64,16 +64,28 @@ def get_answer_for_prompt():
 
     # Combine the raw_answer with the user's prompt to form a new prompt for GPT-3
     #gpt3_prompt = f"User asked: {prompt}. Context: {raw_answer}. How would you respond?"
-    gpt3_prompt = f"Given the following information about a person: {raw_answer}, what can you say about this question: {prompt}. Provide the answer as if you are him"
-    print("FINAL GPT PROMPT:", gpt3_prompt)
+    if raw_answer:
+        gpt3_prompt = f"Given the following information about a person: {raw_answer}, what can you say about this question: {prompt}. Provide the answer as if you are him"
+        print("FINAL GPT PROMPT:", gpt3_prompt)
+        
+        # Now, send this combined prompt to GPT-3 for a response
+        gpt3_response, token_counter = get_gpt3_response(gpt3_prompt, token_counter)
+        print("GPT3 RESPONSE:", gpt3_response)
+    
+        sent = token_counter.sent_tokens
+        received = token_counter.received_tokens
+        print("TOKEN COUNT:", sent, received)
+    else:
+        print("NOT A GOOD RESPONSE WAS FOUND:")
+        return jsonify({
+            'keyword': keyword_match,
+            'raw_answer': 'No Match',
+            'gpt3_answer': 'Im not sure I understand the question, could you please rephrase is?',
+            'tokens_sent': 0,
+            'tokens_received': 0
+        })
 
-    # Now, send this combined prompt to GPT-3 for a response
-    gpt3_response, token_counter = get_gpt3_response(gpt3_prompt, token_counter)
-    print("GPT3 RESPONSE:", gpt3_response)
 
-    sent = token_counter.sent_tokens
-    received = token_counter.received_tokens
-    print("TOKEN COUNT:", sent, received)
 
     # Return the data
     return jsonify({
