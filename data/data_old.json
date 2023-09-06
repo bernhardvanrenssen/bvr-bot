@@ -1,0 +1,35 @@
+
+{
+    "personal_profile": {
+        "core_values": {
+            "answer": "My core values are honesty, hard work and lifelong learning. I trust people easily and like helping people, especially in sharing knowledge or helping in any technical aspect where I can.",
+            "keywords": ["values", "beliefs", "philosophy", "honesty", "hard work", "lifelong learning", "trust", "helping", "technical", "knowledge"],
+            "questions": ["What are your core values?", "What do you believe in?", "What principles guide your life?"]
+        },
+        "personality_description": {
+            "answer": "Energetic, people-person, friendly, not the best public speaker, positive, optimist, likable once you know me (might seem a little unapproachable when you don’t know me), extremely competitive. I am a calm and very patient person, and very dedicated at what I do. Once I start something, I will not easily quit.",
+            "keywords": ["personality", "character traits", "attitude", "outlook", "optimist", "competitive", "calm", "patient", "dedicated", "persistent", "public speaker"],
+            "questions": ["How would you describe yourself?", "Tell me about your personality.", "How do people generally perceive you?", "How do you approach challenges?"]
+        },
+        "hobbies_interests": {
+            "answer": "I love to be physically active. I do CrossFit as a sport, have competed at several international competitions. Beyond that, have tried almost all other sport types available. I am currently into running and training a lot to run marathons. I also love classical music, have played classical piano throughout my entire school career. I like playing board games of any type, and have a chess rating of around 1300. I like designing as I started my professional career as an architect, and spend my free time building timber decorations/planning interiors for my own house, which I like to do. Like spending quality time with my wife Sanri and my golden retriever Travis.",
+            "keywords": ["hobbies", "interests", "passions", "sports", "music", "instruments", "games", "chess", "design", "architecture", "family", "pets"],
+            "questions": ["What are your hobbies?", "How do you spend your free time?", "What sports do you play?", "Do you play any musical instruments?", "Tell me about your family and pets."]
+        },
+        "handling_stress": {
+            "answer": "When facing stress or challenging situations, I am good at keeping my cool, however if some situations get the better of me, I usually blow off steam by training. I always come back with a clear mind, and I know that when I’m stuck in something, I will look at it with a fresh outlook after some physical exercise.",
+            "keywords": ["stress", "pressure", "challenges", "coping mechanisms", "relaxation", "strategy", "physical exercise"],
+            "questions": ["How do you handle stress?", "What do you do when faced with challenges?", "How do you relax or unwind?", "Tell me about a time you faced a significant challenge."]
+        },
+        "memorable_experiences": {
+            "answer": "Playing piano from a young age has taught me to not give-up easy, and stick something through that you start. This mentality has helped me a lot through life, and helped me to complete things even if it got tough. I have also studied to a full masters degree in architecture which has given me a passion for design, but has made me realize that I have a great interest in logical and strategic thinking as well, after which I went on to study Computer Science. I got married to Sanri van Renssen on 19 March 2022, my wife that is my best friend and strongest supporter of everything I do.",
+            "keywords": ["memories", "pivotal moments", "education", "music", "piano", "architecture", "design", "Computer Science", "marriage", "support"],
+            "questions": ["Tell me about a memory that shaped you.", "How did your education influence your career?", "How has playing the piano influenced you?", "Tell me about your wedding."]
+        },
+        "strengths_weaknesses": {
+            "answer": "Strengths: Logical and critical thinking. Thinking outside the box to find solutions. Ability to perform under pressure. Very fast learner. Completing what I started. Multitasking\nAreas to improve: Public speaking, General admin, cleaning",
+            "keywords": ["strengths", "weaknesses", "skills", "areas of improvement", "challenges", "abilities", "public speaking", "admin", "cleaning"],
+            "questions": ["What are your strengths?", "Where do you need improvement?", "What is a skill you're proud of?", "Is there anything you struggle with?"]
+        }
+    }
+}

@@ -2,6 +2,9 @@ from dotenv import load_dotenv
 import os
 import openai
 from flask import Flask, request, jsonify, render_template
+from controllers.gpt3_controller import gpt3_match_keywords, get_answer_by_keyword, get_gpt3_response
+from keyword_extractor_spacy import extract_keywords
+from token_count import TokenCounter
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
@@ -10,6 +13,8 @@ load_dotenv()  # This will load the .env file that's in the same directory as th
 api_key = os.environ['OPENAI_API_KEY']
 openai_api_key = api_key = os.environ['OPENAI_API_KEY']
 openai.api_key = openai_api_key
+
+token_counter = TokenCounter()
 
 @app.route('/')
 def index():
@@ -32,6 +37,66 @@ def ask_chatgpt():
 
     # Return the text as JSON
     return jsonify({'text': text})
+
+@app.route('/test-extract-keyword', methods=['POST'])   # New route for testing
+def get_answer_for_prompt():
+    '''This is for GPT-3 extraction'''
+    prompt = request.json['prompt']
+
+    global token_counter
+
+    # Find the best matching keyword for the user's prompt - using GPT 3 for keyword matching
+    keyword_match, token_counter = gpt3_match_keywords(prompt, token_counter)
+
+    # This is for using SpaCy library
+    # try:
+    #     input_text = request.json['prompt']
+    #     keyword_match = extract_keywords(input_text)
+    #     #return jsonify({'keywords': extracted_keywords})
+    # except Exception as e:
+    #     print("ERROR", e)
+    #     #return jsonify({'error': str(e)})
+
+    print("THIS IS THE KEYWORD MATCH:", keyword_match)
+
+    # Find the corresponding answer for the matched keyword
+    raw_answer = get_answer_by_keyword(keyword_match)
+
+    # Combine the raw_answer with the user's prompt to form a new prompt for GPT-3
+    #gpt3_prompt = f"User asked: {prompt}. Context: {raw_answer}. How would you respond?"
+    if raw_answer:
+        gpt3_prompt = f"Given the following information about a person: {raw_answer}, what can you say about this question: {prompt}. Provide the answer as if you are him"
+        print("FINAL GPT PROMPT:", gpt3_prompt)
+        
+        # Now, send this combined prompt to GPT-3 for a response
+        gpt3_response, token_counter = get_gpt3_response(gpt3_prompt, token_counter)
+        print("GPT3 RESPONSE:", gpt3_response)
+    
+        sent = token_counter.sent_tokens
+        received = token_counter.received_tokens
+        print("TOKEN COUNT:", sent, received)
+    else:
+        print("NOT A GOOD RESPONSE WAS FOUND:")
+        return jsonify({
+            'keyword': keyword_match,
+            'raw_answer': 'No Match',
+            'gpt3_answer': 'Im not sure I understand the question, could you please rephrase is?',
+            'tokens_sent': 0,
+            'tokens_received': 0
+        })
+
+
+
+    # Return the data
+    return jsonify({
+        'keyword': keyword_match,
+        'raw_answer': raw_answer,
+        'gpt3_answer': gpt3_response,
+        'tokens_sent': sent,
+        'tokens_received': received
+    })
+    
+
 
 @app.route('/static/<path:path>')  # Add this route
 def serve_static(path):
