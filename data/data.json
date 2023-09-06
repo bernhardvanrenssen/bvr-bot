@@ -64,7 +64,7 @@
             "questions": ["What is your leadership style?"]
         },
         "tech_advancement": {
-            "answer": "AI's current growth, especially GPT models, stands out in my field. The public adoption surge offers numerous applications, and its combination with digital twins or IoT could be disruptive.",
+            "answer": "AI's current growth, especially large language models, stands out in my field. The public adoption surge offers numerous applications, and its combination with digital twins or IoT could be disruptive.",
             "keywords": ["technical advancement", "future of software", "significant software", "technical advancement"],
             "questions": ["What do you consider to be the most significant technological advancement in your field?"]
         }
