@@ -3,7 +3,7 @@ import os
 import openai
 from flask import Flask, request, jsonify, render_template
 from controllers.gpt3_controller import gpt3_match_keywords, get_answer_by_keyword, get_gpt3_response
-from keyword_extractor_spacy import extract_keywords
+#from keyword_extractor_spacy import extract_keywords
 from token_count import TokenCounter
 
 app = Flask(__name__, static_url_path='', static_folder='static')
