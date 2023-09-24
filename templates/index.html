@@ -24,7 +24,7 @@
 
     <model-viewer 
         id="modelViewer" 
-        src="/static/models/robot.glb"  
+        src="/static/models/bvr_avatar_sm.glb"  
         autoplay alt="Its Me!"
         ar ar-modes="webxr scene-viewer quick-look" 
         camera-controls auto-rotate 
@@ -59,7 +59,6 @@
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
             if (isIOS) {
-                alert("IOS!");
                 // Modify the attributes for iOS
                 modelViewer.setAttribute('ar-scale', 'auto');
                 modelViewer.setAttribute('ar-modes', 'quick-look webxr scene-viewer');
