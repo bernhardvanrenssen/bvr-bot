@@ -18,8 +18,18 @@
 </head>
 
 <body>
-    <model-viewer id="modelViewer" src="/static/models/bvr_avatar_tiny.glb" autoplay alt="Demo Test model"
+    <!-- <model-viewer id="modelViewer" src="/static/models/bvr_avatar_tiny.glb" autoplay alt="Demo Test model"
         ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate scale="1 1 1">
+    </model-viewer> -->
+
+    <model-viewer 
+        id="modelViewer" 
+        src="/static/models/bvr_avatar_tiny.glb"  
+        autoplay alt="Its Me!"
+        ar ar-modes="webxr scene-viewer quick-look" 
+        camera-controls auto-rotate 
+        ar-scale="fixed"
+        rotation="-90deg 0deg 0deg">
     </model-viewer>
 
     <button id="initializeSpeech">Initialize Speech</button>
@@ -49,6 +59,7 @@
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
             if (isIOS) {
+                alert("IOS!");
                 // Modify the attributes for iOS
                 keywordResult.innerText = "We on ios Extracted keyword: " + data.keyword;
                 modelViewer.setAttribute('ar-scale', 'auto');
