@@ -48,15 +48,6 @@ def get_answer_for_prompt():
     # Find the best matching keyword for the user's prompt - using GPT 3 for keyword matching
     keyword_match, token_counter = gpt3_match_keywords(prompt, token_counter)
 
-    # This is for using SpaCy library
-    # try:
-    #     input_text = request.json['prompt']
-    #     keyword_match = extract_keywords(input_text)
-    #     #return jsonify({'keywords': extracted_keywords})
-    # except Exception as e:
-    #     print("ERROR", e)
-    #     #return jsonify({'error': str(e)})
-
     print("THIS IS THE KEYWORD MATCH:", keyword_match)
 
     # Find the corresponding answer for the matched keyword
@@ -80,7 +71,7 @@ def get_answer_for_prompt():
         return jsonify({
             'keyword': keyword_match,
             'raw_answer': 'No Match',
-            'gpt3_answer': 'Im not sure I understand the question, could you please rephrase is?',
+            'gpt3_answer': 'Im not sure I understand the question, could you please rephrase it?',
             'tokens_sent': 0,
             'tokens_received': 0
         })

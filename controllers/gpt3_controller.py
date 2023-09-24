@@ -13,12 +13,20 @@ openai.api_key = os.environ['OPENAI_API_KEY']
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(CURRENT_DIR)
 
-def load_keywords_from_json(filename):
+def load_keywords_from_json(filename, query):
     """
     Reads the specified JSON file and extracts the list of keywords.
+    First determine which category it belongs to
     """
     with open(filename, 'r') as file:
         data = json.load(file)
+
+        categories = list(data.keys())
+        prompt = f"I have the following categories: {', '.join(categories)}. Based on the question '{query}', which category does it best match? Please respond with ONLY the category name."
+        print("MY PROMPT ", prompt)
+        response = openai.Completion.create(engine="text-davinci-003", prompt=prompt, max_tokens=20)
+        category = response.choices[0].text.strip()
+        print("THIS CATEGORY MATCHES THE QUESTION:", category)
         
         keywords = []
         for section_key, section_data in data.items():
@@ -38,7 +46,7 @@ def gpt3_match_keywords(prompt, token_counter):
 
     try:
         token_counter.add_sent(len(prompt.split()))
-        keyword_list = load_keywords_from_json(filename)
+        keyword_list = load_keywords_from_json(filename, prompt)
         formatted_keywords = ', '.join(keyword_list[:-1]) + " and " + keyword_list[-1]
         response = openai.Completion.create(
             engine="text-davinci-003",
