@@ -50,6 +50,7 @@
 
             if (isIOS) {
                 // Modify the attributes for iOS
+                keywordResult.innerText = "We on ios Extracted keyword: " + data.keyword;
                 modelViewer.setAttribute('ar-scale', 'auto');
                 modelViewer.setAttribute('ar-modes', 'quick-look webxr scene-viewer');
                 modelViewer.setAttribute('src', '/static/models/bvr_avatar_ios.glb');
