@@ -21,9 +21,12 @@ def load_keywords_from_json(filename, query):
     with open(filename, 'r') as file:
         data = json.load(file)
 
-        categories = list(data.keys())
+        #categories = list(data.keys())
+        categories = []
+        for section_key, section_data in data.items():
+            categories.extend(section_data.keys())
         prompt = f"I have the following categories: {', '.join(categories)}. Based on the question '{query}', which category does it best match? Please respond with ONLY the category name."
-        print("MY PROMPT ", prompt)
+        print("MY CATEGORIES ", categories)
         response = openai.Completion.create(engine="text-davinci-003", prompt=prompt, max_tokens=20)
         category = response.choices[0].text.strip()
         print("THIS CATEGORY MATCHES THE QUESTION:", category)
@@ -50,6 +53,7 @@ def gpt3_match_keywords(prompt, token_counter):
         formatted_keywords = ', '.join(keyword_list[:-1]) + " and " + keyword_list[-1]
         response = openai.Completion.create(
             engine="text-davinci-003",
+            #model="gpt-3.5-turbo",
             prompt=f"Given the list of keywords [{formatted_keywords}], which keyword(s) best relate to the user's input (maximum 5): \"{prompt}\"?",
             max_tokens=50
         )
@@ -95,6 +99,7 @@ def get_gpt3_response(prompt, token_counter):
     token_counter.add_sent(len(prompt.split()))
     response = openai.Completion.create(
       engine="text-davinci-003",
+      #model="gpt-3.5-turbo",
       prompt=prompt,
       max_tokens=150
     )

@@ -1,5 +1,5 @@
 {
-    "personal_profile": {
+    "personal": {
         "core_values": {
             "answer": "Values: honesty, hard work, lifelong learning. Trust easily, help others, share technical knowledge.",
             "keywords": ["values", "beliefs", "philosophy", "honesty", "hard work", "trust", "helping"],
@@ -32,7 +32,7 @@
         }
     },
 
-    "professional_aspirations_experience": {
+    "career": {
         "transition_reason": {
             "answer": "Started in architecture, Missed technical and problem-solving in architecture, I self-taught coding, converting architectural designs into VR experiences. This led to co-founding XRai, an AR/VR startup. Post my formal computer science education from the University of Essex Online, I progressed to a lead developer role at dotxml.",
             "keywords": ["architecture", "coding", "startup", "study", "current job"],
@@ -67,6 +67,11 @@
             "answer": "AI's current growth, especially large language models, stands out in my field. The public adoption surge offers numerous applications, and its combination with digital twins or IoT could be disruptive.",
             "keywords": ["technical advancement", "future of software", "significant software", "technical advancement"],
             "questions": ["What do you consider to be the most significant technological advancement in your field?"]
+        },
+        "leadership_experience": {
+            "answer": "I was promoted to team lead quickly at dotXML and was project lead for a major insurance project, successfully delivered",
+            "keywords": ["leadership", "team lead", "promotion","insurance project", "technical lead"],
+            "questions": ["Describe an instance where you took on a leadership role. What was the outcome?", "How did you handle your promotion to team lead?", "Tell me about your leadership experience in your current project."]
         }
     },
 
@@ -108,11 +113,6 @@
             "answer": "I value punctuality and open communication in my team, to have knowledge of issues early helps to think of solutions timeously.",
             "keywords": ["qualities", "colleagues", "team members", "deadlines", "communication", "advance notice", "resources"],
             "questions": ["What are the qualities you value most in colleagues and team members?", "How important is communication in a team?", "What makes a good colleague in your opinion?"]
-        },
-        "leadership_experience": {
-            "answer": "I was promoted to team lead quickly at dotXML and was project lead for a major insurance project, successfully delivered",
-            "keywords": ["leadership", "team lead", "promotion","insurance project", "technical lead"],
-            "questions": ["Describe an instance where you took on a leadership role. What was the outcome?", "How did you handle your promotion to team lead?", "Tell me about your leadership experience in your current project."]
         }
     }
     
