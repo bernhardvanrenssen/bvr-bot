@@ -40,8 +40,36 @@ def load_keywords_from_json(filename, query):
                     print(f"Error in data entry for {section_key} - {item_key}: {item_data}")
                 
         return keywords
+    
+def load_category_from_json(filename, query):
+    """
+    Reads the specified JSON file and extracts the list of keywords.
+    First determine which category it belongs to
+    """
+    with open(filename, 'r') as file:
+        data = json.load(file)
 
-def gpt3_match_keywords(prompt, token_counter):
+        #categories = list(data.keys())
+        categories = []
+        for section_key, section_data in data.items():
+            categories.extend(section_data.keys())
+        prompt = f"I have the following categories: {', '.join(categories)}. Based on the question '{query}', which category does it best match? Please respond with ONLY the category name."
+        print("MY CATEGORIES ", categories)
+        response = openai.Completion.create(engine="text-davinci-003", prompt=prompt, max_tokens=20)
+        category = response.choices[0].text.strip()
+        print("THIS CATEGORY MATCHES THE QUESTION:", category)
+        return category
+        #keywords = []
+        for section_key, section_data in data.items():
+            for item_key, item_data in section_data.items():
+                try:
+                    keywords.extend(item_data['keywords'])
+                except KeyError:
+                    print(f"Error in data entry for {section_key} - {item_key}: {item_data}")
+                
+        return keywords
+
+def gpt3_match_category(prompt, token_counter):
     """
     Uses OpenAI's Davinci model to match the user's prompt against the extracted list of keywords.
     """
@@ -49,23 +77,24 @@ def gpt3_match_keywords(prompt, token_counter):
 
     try:
         token_counter.add_sent(len(prompt.split()))
-        keyword_list = load_keywords_from_json(filename, prompt)
-        formatted_keywords = ', '.join(keyword_list[:-1]) + " and " + keyword_list[-1]
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            #model="gpt-3.5-turbo",
-            prompt=f"Given the list of keywords [{formatted_keywords}], which keyword(s) best relate to the user's input (maximum 5): \"{prompt}\"?",
-            max_tokens=50
-        )
-        token_counter.add_received(response['usage']['total_tokens'])
-        matched_keywords = response.choices[0].text.strip()
-        return matched_keywords, token_counter
+        category = load_category_from_json(filename, prompt)
+        # formatted_keywords = ', '.join(keyword_list[:-1]) + " and " + keyword_list[-1]
+        # response = openai.Completion.create(
+        #     engine="text-davinci-003",
+        #     #model="gpt-3.5-turbo",
+        #     prompt=f"Given the category [{formatted_keywords}], which keyword(s) best relate to the user's input (maximum 5): \"{prompt}\"?",
+        #     max_tokens=50
+        # )
+        # token_counter.add_received(response['usage']['total_tokens'])
+        #matched_keywords = response.choices[0].text.strip()
+        return category, token_counter
     except Exception as e:
         print(f"Error while matching keywords: {e}")
         return None
 
 def get_answer_by_keyword(keyword_string):
-    print("INPUT KEYWORDS:", keyword_string)
+    keyword_string = keyword_string.lower()
+    print("INPUT KEYWORD:", keyword_string)
     
     filename = os.path.join('data', 'data.json')
 
@@ -76,19 +105,11 @@ def get_answer_by_keyword(keyword_string):
     if not isinstance(data, dict):
         raise ValueError("Expected a dictionary in data.json")
 
-    # Convert the input keyword string to lowercase and then split into individual keywords
-    input_keywords = [k.strip().lower() for k in keyword_string.split(",")]
-
-    matched_answers = []
-
+    # Traverse through the data to find the corresponding answer for the input keyword_string
     for main_section_key, main_section_data in data.items():
         for section_key, section_data in main_section_data.items():
-            stored_keywords = [k.lower() for k in section_data['keywords']]
-            if any(k in stored_keywords for k in input_keywords):
-                matched_answers.append(section_data['answer'])
-
-    if matched_answers:
-        return '. '.join(matched_answers)
+            if section_key == keyword_string:
+                return section_data['answer']
 
     print("RETURNING FALSE")
     return False
@@ -107,7 +128,7 @@ def get_gpt3_response(prompt, token_counter):
     return response.choices[0].text.strip(), token_counter
 
 def get_extended_answer_for_prompt(user_prompt, token_counter):
-    keyword_match, token_counter = gpt3_match_keywords(user_prompt, token_counter)
+    keyword_match, token_counter = gpt3_match_category(user_prompt, token_counter)
 
     raw_answer = get_answer_by_keyword(keyword_match)
     

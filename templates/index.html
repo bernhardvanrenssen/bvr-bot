@@ -1,5 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Recognition Example</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <script src="https://www.xrai.co.za/webar/artyom.js/build/artyom.window.js"></script>
+</head>
+<body>
+    <model-viewer 
+        id="modelViewer" 
+        src="{{ url_for('static', filename='models/bvr_avatar_sm.glb') }}"  
+        autoplay alt="Its Me!"
+        ar ar-modes="webxr scene-viewer quick-look" 
+        camera-controls auto-rotate 
+        ar-scale="fixed"
+        rotation="-90deg 0deg 0deg">
+    </model-viewer>
+
+    <button id="initializeSpeech">Initialize Speech</button>
+    <button id="startButton" hidden>Start</button>
+    <button id="readTextButton" disabled>Read Text</button>
+    <button id="enterAR" disabled>Enter AR Mode</button>
+    <button id="stopButton">Stop</button>
+
+    <div id="output">Welcome...</div>
+    <div id="response"></div>
+
+    <div style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;">
+        <h3>Test Keyword Extraction</h3>
+        <input type="text" id="keywordTestInput" placeholder="Type a query here..." style="width: 70%;">
+        <button id="testKeywordButton">Run Query</button>
+        <div id="keywordResult">Result will appear here...</div>
+        <div id="promptAnswer">Raw answer will appear here...</div>
+        <div id="gpt3Answer">Refined answer will appear here...</div>
+        <div id="totalTokens">token usage:</div>
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+</body>
+</html>
+
+
+
+
+<!-- # --------------------------------
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -18,9 +65,6 @@
 </head>
 
 <body>
-    <!-- <model-viewer id="modelViewer" src="/static/models/bvr_avatar_tiny.glb" autoplay alt="Demo Test model"
-        ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate scale="1 1 1">
-    </model-viewer> -->
 
     <model-viewer 
         id="modelViewer" 
@@ -257,4 +301,4 @@
     </script>
 </body>
 
-</html>
+</html> -->
