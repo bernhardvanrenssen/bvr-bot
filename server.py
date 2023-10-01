@@ -55,7 +55,7 @@ def get_answer_for_prompt():
     # Combine the raw_answer with the user's prompt to form a new prompt for GPT-3
     #gpt3_prompt = f"User asked: {prompt}. Context: {raw_answer}. How would you respond?"
     if raw_answer:
-        gpt3_prompt = f"Based on this information: {raw_answer}, respond to {prompt} as if you are the individual mentioned. For instance, use 'I' to refer to the person described."
+        gpt3_prompt = f"Based on this information: {raw_answer}, respond to {prompt} as if you are the individual mentioned. For instance, use 'I' to refer to the person described. Keep the answer short if possible"
         print("FINAL GPT PROMPT:", gpt3_prompt)
         
         # Now, send this combined prompt to GPT-3 for a response

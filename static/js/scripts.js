@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
     const enterARButton = document.getElementById('enterAR');
+    const initializeSpeech = document.getElementById('initializeSpeech');
     const modelViewer = document.getElementById('modelViewer');
     const startButton = document.getElementById('startButton');
     const output = document.getElementById('output');
@@ -37,18 +38,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
             },
             body: JSON.stringify({ prompt: prompt })
         })
-        .then(response => response.json())
+        .then(response => {
+            if(!response.ok) throw new Error('Network response was not ok' + response.statusText);
+            return response.json();
+        })
         .then(data => {
-            console.log("AM I GETTING RESPONSE?", data)
+            console.log("AM I GETTING RESPONSE?", data);
             keywordResult.innerText = "Extracted keyword: " + data.keyword;
             promptAnswer.innerText = "Raw answer: " + data.raw_answer;
-
-            // Handle the GPT-3 answer here
-            gpt3Answer.innerText = "GPT-3's answer: " + data.gpt3_answer;
+            gpt3Answer.innerText = data.gpt3_answer;
             totalTokens.innerText  = 'Sent: ' + data.tokens_sent + ' Received: ' + data.tokens_received;
+    
+            // Call the readStoredText function directly here since you have received the data
+            readStoredText();
         })
         .catch(error => {
             console.error('Error:', error);
+            // Handle errors appropriately, possibly updating the UI to inform the user.
         });
     });
 
@@ -97,7 +103,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if (enterARButton && modelViewer) {
         enterARButton.addEventListener('click', function() {
             modelViewer.activateAR();
-            startArtyom();
+            //startArtyom();
+            initializeSpeech.click();
         });
     }
 
@@ -155,7 +162,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function readStoredText() {
-        readBack(response.innerText);
+        readBack(gpt3Answer.innerText);
     }
 
     function readBack(text) {

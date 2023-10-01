@@ -133,7 +133,7 @@ def get_extended_answer_for_prompt(user_prompt, token_counter):
     raw_answer = get_answer_by_keyword(keyword_match)
     
     # Combine the raw_answer with the user's prompt to form a new prompt for GPT-3
-    gpt3_prompt = f"User asked: {user_prompt}. Context: {raw_answer}. How would you respond?"
+    gpt3_prompt = f"User asked: {user_prompt}. Context: {raw_answer}. How would you respond? Keep the answer short."
     
     # Fetch the response from GPT-3 based on the combined prompt
     gpt3_response = get_gpt3_response(gpt3_prompt)
