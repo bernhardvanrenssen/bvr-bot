@@ -9,15 +9,7 @@
     <script src="https://www.xrai.co.za/webar/artyom.js/build/artyom.window.js"></script>
 </head>
 <body>
-    <model-viewer 
-        id="modelViewer" 
-        src="{{ url_for('static', filename='models/bvr_avatar_sm.glb') }}"  
-        autoplay alt="Its Me!"
-        ar ar-modes="webxr scene-viewer quick-look" 
-        camera-controls auto-rotate 
-        ar-scale="fixed"
-        rotation="-90deg 0deg 0deg">
-    </model-viewer>
+    {% include 'model_viewer.html' %}
 
     <button id="initializeSpeech">Initialize Speech</button>
     <button id="startButton" hidden>Start</button>

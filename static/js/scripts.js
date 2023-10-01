@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         enterARButton.addEventListener('click', function() {
             modelViewer.activateAR();
             //startArtyom();
-            initializeSpeech.click();
+            //initializeSpeech.click();
         });
     }
 
