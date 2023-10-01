@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
     <script src="https://www.xrai.co.za/webar/artyom.js/build/artyom.window.js"></script>
+    <style>
+        @media (max-width: 600px) {
+            button {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+        }
+    </style>
 </head>
 <body class="bg-light">
     <div class="container">
@@ -49,6 +57,7 @@
     <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
 </body>
 </html>
+
 
 
 
