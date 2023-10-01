@@ -2,9 +2,21 @@
 <model-viewer 
     id="modelViewer" 
     src="{{ url_for('static', filename='models/bvr_avatar_sm.glb') }}"  
-    autoplay alt="Its Me!"
-    ar ar-modes="webxr scene-viewer quick-look" 
-    camera-controls auto-rotate 
+    autoplay 
+    alt="Its Me!"
+    ar 
+    ar-modes="webxr scene-viewer quick-look" 
+    camera-controls 
+    auto-rotate 
     ar-scale="fixed"
     rotation="-90deg 0deg 0deg">
+    <button id="speechButton" slot="hotspot-hand-1" @click="initializeSpeechClick">Initialize Speech</button>
 </model-viewer>
+
+<script>
+function initializeSpeechClick() {
+    const initializeSpeech = document.getElementById('initializeSpeech');
+    initializeSpeech.click();
+}
+</script>
+

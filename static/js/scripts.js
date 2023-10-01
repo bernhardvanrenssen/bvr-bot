@@ -176,5 +176,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     readTextButton.addEventListener('click', function() {
-        readBack(output.innerText);
+        readBack(gpt3Answer.innerText);
     });

@@ -4,34 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voice Recognition Example</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
     <script src="https://www.xrai.co.za/webar/artyom.js/build/artyom.window.js"></script>
 </head>
-<body>
-    {% include 'model_viewer.html' %}
+<body class="bg-light">
+    <div class="container">
+        {% include 'model_viewer.html' %}
+        
+        <div class="d-flex justify-content-between my-3">
+            <button class="btn btn-primary" id="initializeSpeech">Initialize Speech</button>
+            <button class="btn btn-secondary" id="startButton" hidden>Start</button>
+            <button class="btn btn-secondary" id="readTextButton" disabled>Read Text</button>
+            <button class="btn btn-secondary" id="enterAR" disabled>Enter AR Mode</button>
+            <button class="btn btn-danger" id="stopButton">Stop</button>
+        </div>
 
-    <button id="initializeSpeech">Initialize Speech</button>
-    <button id="startButton" hidden>Start</button>
-    <button id="readTextButton" disabled>Read Text</button>
-    <button id="enterAR" disabled>Enter AR Mode</button>
-    <button id="stopButton">Stop</button>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div id="output">Welcome...</div>
+                <div id="response"></div>
+            </div>
+        </div>
 
-    <div id="output">Welcome...</div>
-    <div id="response"></div>
-
-    <div style="margin-top: 20px; padding: 10px; border: 1px solid #ddd;">
-        <h3>Debugging Information</h3>
-        <input type="text" id="keywordTestInput" placeholder="Type a query here..." style="width: 70%;">
-        <button id="testKeywordButton">Run Query</button>
-        <div id="keywordResult">Result will appear here...</div>
-        <div id="promptAnswer">Raw answer will appear here...</div>
-        <div id="gpt3Answer">Refined answer will appear here...</div>
-        <div id="totalTokens">token usage:</div>
+        <div class="card">
+            <div class="card-header">
+                Debugging Information
+            </div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="keywordTestInput" placeholder="Type a query here...">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" id="testKeywordButton">Run Query</button>
+                    </div>
+                </div>
+                <div id="keywordResult">Result will appear here...</div>
+                <div id="promptAnswer">Raw answer will appear here...</div>
+                <div id="gpt3Answer">Refined answer will appear here...</div>
+                <div id="totalTokens">token usage:</div>
+            </div>
+        </div>
     </div>
     <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
 </body>
 </html>
+
 
 
 
