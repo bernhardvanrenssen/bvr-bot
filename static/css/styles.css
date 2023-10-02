@@ -16,6 +16,7 @@ model-viewer {
     cursor: pointer;
     min-width: 100px; 
     white-space: nowrap;
+    z-index: 1000;
 }
 #speechButton:hover {
     background-color: #45a049;
@@ -27,4 +28,10 @@ model-viewer {
     background-repeat: no-repeat;
     width: 100vw;
     height: 50vh;
+}
+#fixedButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensuring the button is above other elements */
 }
