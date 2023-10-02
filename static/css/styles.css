@@ -20,3 +20,11 @@ model-viewer {
 #speechButton:hover {
     background-color: #45a049;
 }
+#modelViewer {
+    background-image: url('../static/images/xrai.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 50vh;
+}
