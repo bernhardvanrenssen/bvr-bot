@@ -2,7 +2,6 @@
 <model-viewer 
     id="modelViewer" 
     src="{{ url_for('static', filename='models/bvr_avatar_sm.glb') }}"  
-    poster="{{ url_for('static', filename='images/xrai.png') }}"
     autoplay 
     alt="Its Me!"
     ar 
@@ -10,12 +9,14 @@
     camera-controls 
     auto-rotate 
     ar-scale="fixed"
-    rotation="-90deg 0deg 0deg">
+    rotation="-90deg 0deg 0deg"
+    style="background-image: url('{{ url_for('static', filename='images/xrai.png') }}'); background-size: cover; background-position: center;">
     <button id="speechButton" slot="hotspot-hand-1" @click="initializeSpeechClick">Start Chat</button>
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; top: 16px; right: 16px; ">
         👋 Activate AR
     </button>
 </model-viewer>
+<!-- poster="{{ url_for('static', filename='images/xrai.png') }}" -->
 
 
 
