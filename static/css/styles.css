@@ -36,18 +36,3 @@ model-viewer {
     z-index: 1000; /* Ensuring the button is above other elements */
 }
 
-model-viewer::slotted([slot="ar-button"]) {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background-color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 1000;
-}
-
-model-viewer::slotted([slot="ar-button"]):hover {
-    background-color: #f0f0f0;
-}

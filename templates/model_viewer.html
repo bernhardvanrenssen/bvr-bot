@@ -12,7 +12,12 @@
     rotation="-90deg 0deg 0deg">
     <!-- <button id="speechButton" slot="hotspot-hand-1" @click="initializeSpeechClick">Start Chat</button> -->
     <button id="speechButton" onclick="initializeSpeechClick()">Start Chat</button>
-    <button slot="ar-button">
+    <button slot="ar-button" style="background-color: white; border: none; position: absolute; top: 16px; right: 16px; border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        min-width: 100px; 
+        white-space: nowrap;
+        z-index: 1000;">
         👋 Activate AR
     </button>   
 </model-viewer>
