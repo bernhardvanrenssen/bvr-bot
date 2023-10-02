@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // AR HOTSPOT BUTTON FUNCTIONALITY
-    
+
     document.addEventListener('DOMContentLoaded', (event) => {
         const speechButton = document.querySelector('#speechButton');
         if(speechButton) {
@@ -196,7 +196,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (initializeSpeech) {
             initializeSpeech.click();
         } else {
-            console.error("Couldn't find the initializeSpeech button");
+            console.error("Couldn't find uthe initializeSpeech btton");
         }
-        alert('clicked the btn');
     }
