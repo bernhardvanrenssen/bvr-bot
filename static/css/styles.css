@@ -3,3 +3,20 @@ model-viewer {
     height: 300px;
 }
 /* Additional styles */
+#speechButton {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 100px; 
+    white-space: nowrap;
+}
+#speechButton:hover {
+    background-color: #45a049;
+}
