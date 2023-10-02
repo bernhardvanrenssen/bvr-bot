@@ -178,3 +178,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
     readTextButton.addEventListener('click', function() {
         readBack(gpt3Answer.innerText);
     });
+
+    // AR HOTSPOT BUTTON FUNCTIONALITY
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const speechButton = document.querySelector('#speechButton');
+        if(speechButton) {
+            speechButton.addEventListener('click', initializeSpeechClick);
+        } else {
+            console.error("Couldn't find the speechButton");
+        }
+    });
+    
+    function initializeSpeechClick() {
+        console.log("CLICKING!");
+        const initializeSpeech = document.getElementById('initializeSpeech');
+        if (initializeSpeech) {
+            initializeSpeech.click();
+        } else {
+            console.error("Couldn't find the initializeSpeech button");
+        }
+        alert('clicked the btn');
+    }
